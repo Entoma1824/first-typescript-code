@@ -1,53 +1,69 @@
 "use strict";
-var stringArr = ['one', 'hey', 'Dave'];
-var guitars = ['Strat', 'Les Paul', 5150];
-var mixedData = ['EVh', 1984, true];
-stringArr[0] = 'John';
-stringArr.push('hey');
-guitars[0] = 1984;
-guitars.unshift('Jim');
-var test = [];
-var bands = [];
-bands.push('Van halens');
-// tuple
-var myTuple = ['Dave', 42, true];
-var mixed = ['John', 1, false];
-myTuple[1] = 42;
-// objects
-var myObj;
-myObj = [];
-console.log(typeof myObj);
-myObj = bands;
-myObj = {};
-var exampleObj = {
-    prop1: 'Dave',
-    prop2: true,
+// Literal types
+var myName;
+var userName;
+userName = 'Amy';
+// functions
+var add = function (a, b) {
+    return a + b;
 };
-exampleObj.prop1 = 'John';
-var evh = {
-    name: 'Eddie',
-    active: false,
-    albums: [1984, 5150, 'OU812']
+var logMsg = function (message) {
+    console.log(message);
 };
-var jp = {
-    name: 'Jimmy',
-    active: true,
-    albums: ['I', 'II', 'IV']
+logMsg('Hello!');
+logMsg(add(2, 3));
+var subtract = function (c, d) {
+    return c - d;
 };
-var greetGuitarist = function (guitarist) {
-    if (guitarist.name) {
-        return "Hello ".concat(guitarist.name.toUpperCase(), "!");
+var multiply = function (c, d) {
+    return c * d;
+};
+logMsg(multiply(2, 2));
+//optional parameters
+var addAll = function (a, b, c) {
+    if (typeof c !== 'undefined') {
+        return a + b + c;
     }
-    return 'Hello!';
+    return a + b;
 };
-// Enums
-// "Unlike most typescript features, enums are not a type-level addition to JavaScript but something added to the language and runtime."
-var Grade;
-(function (Grade) {
-    Grade[Grade["U"] = 1] = "U";
-    Grade[Grade["D"] = 2] = "D";
-    Grade[Grade["C"] = 3] = "C";
-    Grade[Grade["B"] = 4] = "B";
-    Grade[Grade["A"] = 5] = "A";
-})(Grade || (Grade = {}));
-console.log(Grade.U);
+var sumAll = function (a, b, c) {
+    if (a === void 0) { a = 10; }
+    if (c === void 0) { c = 2; }
+    return a + b + c;
+};
+logMsg(addAll(2, 3, 2));
+logMsg(addAll(2, 3));
+logMsg(sumAll(2, 3, 2));
+logMsg(sumAll(undefined, 3));
+// rest parameters
+var total = function () {
+    var nums = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        nums[_i] = arguments[_i];
+    }
+    return nums.reduce(function (prev, curr) { return prev + curr; });
+};
+logMsg(total(10, 2, 3));
+var createError = function (errMsg) {
+    throw new Error(errMsg);
+};
+var infinite = function () {
+    var i = 1;
+    while (true) {
+        i++;
+        if (i > 100)
+            break;
+    }
+};
+var isNumber = function (value) {
+    return typeof value === 'number'
+        ? true : false;
+};
+// use of the never type
+var numberOrString = function (value) {
+    if (typeof value === 'string')
+        return 'string';
+    if (typeof value === 'number')
+        return 'number';
+    return createError('This should never happen!');
+};
