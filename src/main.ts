@@ -80,7 +80,7 @@ const infinite = () => {
     if (i> 100 ) break
     }
 }
-
+//custom type guard
 const isNumber = (value : any) :boolean => {
     return typeof value === 'number'
         ? true : false

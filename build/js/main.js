@@ -55,6 +55,7 @@ var infinite = function () {
             break;
     }
 };
+//custom type guard
 var isNumber = function (value) {
     return typeof value === 'number'
         ? true : false;
